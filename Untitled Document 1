@@ -1,0 +1,18 @@
+create interface for the product
+
+create two instances of formGroup & formControl
+
+formGroup will include the addCardForm method(
+all the inputs definition with their validation
+)
+
+
+declare the addCard function(
+
+use the Iproduct interface = {
+declare the data passed from the form inputs
+
+}
+push the new object to the array of the product
+
+)

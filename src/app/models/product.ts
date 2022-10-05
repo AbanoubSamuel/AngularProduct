@@ -5,3 +5,6 @@ export interface Iproduct {
     Price: number
     Img: string
 }
+
+
+

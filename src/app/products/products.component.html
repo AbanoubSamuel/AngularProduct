@@ -16,3 +16,53 @@
         </div>
     </div>
 </div>
+
+<section>
+    <form [formGroup]="buyForm" (ngSubmit)="addProduct()">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">ID</label>
+            <input type="text" formControlName="ID" class="form-control">
+            <div id="emailHelp" class="form-text">Enter product ID.</div>
+            <div *ngIf="buyForm.get('ID')?.touched && buyForm.get('ID')?.invalid">
+                <span class="text-danger" *ngIf="buyForm.get('ID')?.errors?.['required']">Please enter an ID</span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Name</label>
+            <input type="email" formControlName="Name" class="form-control">
+            <div id="emailHelp" class="form-text">Enter Product Name.</div>
+            <div *ngIf="buyForm.get('Name')?.touched && buyForm.get('Name')?.invalid">
+                <span class="text-danger" *ngIf="buyForm.get('Name')?.errors?.['required']">Please enter a name</span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Quantity</label>
+            <input type="email" formControlName="Quantity" class="form-control">
+            <div id="emailHelp" class="form-text">Enter Quantity.</div>
+            <div *ngIf="buyForm.get('Quantity')?.touched && buyForm.get('Quantity')?.invalid">
+                <span class="text-danger" *ngIf="buyForm.get('Quantity')?.errors?.['required']">Please enter quantity</span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Price</label>
+            <input type="email" formControlName="Price" class="form-control" id="exampleInputEmail1">
+            <div id="emailHelp" class="form-text">Enter Price</div>
+            <div *ngIf="buyForm.get('Price')?.touched && buyForm.get('Price')?.invalid">
+                <span class="text-danger" *ngIf="buyForm.get('Price')?.errors?.['required']">Please enter the price</span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Image</label>
+            <input type="email" formControlName="Img" class="form-control" id="exampleInputEmail1">
+            <div id="emailHelp" class="form-text">Enter Image path url</div>
+            <div *ngIf="buyForm.get('Img')?.touched && buyForm.get('Img')?.invalid">
+                <span class="text-danger" *ngIf="buyForm.get('Img')?.errors?.['required']">Please enter an image url</span>
+            </div>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="buyForm.invalid">Submit</button>
+    </form>
+</section>
