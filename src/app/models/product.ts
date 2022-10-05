@@ -7,4 +7,10 @@ export interface Iproduct {
 }
 
 
+export interface Person{
+    name :string;
+    userName:string;
+    email:string;
+    password:string;
 
+}

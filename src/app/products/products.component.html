@@ -66,3 +66,27 @@
         <button type="submit" class="btn btn-primary" [disabled]="buyForm.invalid">Submit</button>
     </form>
 </section>
+
+<section>
+    <form [formGroup]="addperson" (ngSubmit)="register()" >
+        <div id="body_1">
+          <div>
+          <label for="Name"></label>
+          <input type="text" placeholder="Name*" name="name" formControlName="name" required>
+      
+          <label for="psw"></label>
+          <input type="text" placeholder="Username*" name="userName"formControlName="userName" required>
+      
+          <label for="psw-repeat"></label>
+          <input type="password" placeholder="Password*" name="password"  formControlName="password"required>
+          <label for="psw"></label>
+          <input type="password" placeholder="Number*" name="psw" formControlName="password" required>
+      
+          <label for="psw-repeat"></label>
+          <input type="email" placeholder="Email" name="email" formControlName="email" required>
+      
+          
+            <button type="submit" class="registerbtn">Register</button></div>
+        </div>
+      </form>
+</section>

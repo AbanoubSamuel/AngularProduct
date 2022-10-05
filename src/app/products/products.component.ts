@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Iproduct } from '../models/product';
+import { Iproduct, Person } from '../models/product';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 @Component({
     selector: 'app-products',
@@ -9,8 +9,18 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 export class ProductsComponent implements OnInit {
     list: Iproduct[] = [];
     buyForm: FormGroup;
+    person: Person[] = []
+    addperson: FormGroup;
 
     constructor() {
+        this.addperson = new FormGroup({
+            name: new FormControl("", [Validators.required]),
+            userName: new FormControl("", [Validators.required]),
+            email: new FormControl("", [Validators.required]),
+            password: new FormControl("", [Validators.required, Validators.min(6)])
+
+        })
+
         this.list = [
             { ID: 1, Name: "product 1", Quantity: 12, Price: 100, Img: "../../assets/download.jpeg" },
             { ID: 1, Name: "product 2", Quantity: 65, Price: 27, Img: "../../assets/download.jpeg" },
@@ -25,6 +35,7 @@ export class ProductsComponent implements OnInit {
             Price: new FormControl("", [Validators.required]),
             Img: new FormControl("", [Validators.required])
         })
+
     }
     ngOnInit(): void {
     }
@@ -38,6 +49,10 @@ export class ProductsComponent implements OnInit {
             Img: this.buyForm.value["Img"]
         }
         this.list.push(newProduct);
+    }
+
+    register() {
+        console.log(this.addperson.value)
     }
 
 }
