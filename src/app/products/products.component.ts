@@ -1,18 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Iproduct, Person } from '../models/product';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { CartItemArgs } from '../models/cartItemArgs';
+import { cartService } from '../Service/cart-service';
 @Component({
     selector: 'app-products',
     templateUrl: './products.component.html',
     styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnChanges {
+    @Input() SelectedCategory: number = 0;
+    @Output()handellist: EventEmitter<CartItemArgs>;
+
     list: Iproduct[] = [];
     buyForm: FormGroup;
     person: Person[] = []
     addperson: FormGroup;
+    router: any;
+    FilterList: any;
 
-    constructor() {
+    constructor(private cartSercive:cartService) {
+        this.handellist = new EventEmitter<CartItemArgs>()
         this.addperson = new FormGroup({
             name: new FormControl("", [Validators.required]),
             userName: new FormControl("", [Validators.required]),
@@ -37,6 +45,9 @@ export class ProductsComponent implements OnInit {
         })
 
     }
+    ngOnChanges(changes: SimpleChanges): void {
+        throw new Error('Method not implemented.');
+    }
     ngOnInit(): void {
     }
 
@@ -53,6 +64,24 @@ export class ProductsComponent implements OnInit {
 
     register() {
         console.log(this.addperson.value)
+    }
+
+
+
+    addToCart(id: number, price: number) {
+        this.cartSercive.AdditemtoCart({ID:id,price:price,Quantity:1})
+        this.handellist.emit({
+            ID: id,
+            price: price,
+            Quantity: 1
+        });
+
+    }
+
+
+    details(id: number) {
+        // this.router.navigateByUrl('')
+        this.router.navigate(["/product", id])
     }
 
 }
